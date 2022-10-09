@@ -1,19 +1,19 @@
 # DbConnApp
 
-To start your Phoenix server:
+Create a dyno on heroku and configure with the following buildpack
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+```
+https://github.com/HashNuke/heroku-buildpack-elixir.git
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Set the following environment variables
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```
+DATABASE_URL: <crunchy bridge url>
+POOL_SIZE: 1000
+SECRET_KEY_BASE: 9pv4UnaC85c5wDxUmtrxUz/QuuKiu8232egBfk+d3PnSLJ2Sfdg+zN9ci6UQGKKf
+```
 
-## Learn more
+Note: secret key base can be anything, the above is a working example.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+Deploy the app, after around 15 seconds, database connection timeouts and `send: closed` errors will start showing in the logs.
