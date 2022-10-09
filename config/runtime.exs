@@ -31,9 +31,10 @@ if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
   config :db_conn_app, DbConnApp.Repo,
-    # ssl: true,
+    ssl: true,
     url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+    prepare: :unnamed,
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || 10),
     socket_options: maybe_ipv6
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
